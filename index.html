@@ -818,13 +818,13 @@ footer {
 <!-- NAV -->
 <nav>
   <div class="nav-inner">
-    <a href="#" class="active">🏠 Trang Chủ</a>
-    <a href="#">🍳 Nhà Bếp</a>
-    <a href="#">🚿 Nhà Tắm</a>
-    <a href="#">⚡ Điện Gia Dụng</a>
-    <a href="#">🌿 Chăm Sóc Nhà</a>
-    <a href="#">👶 Mẹ & Bé</a>
-    <a href="#">📖 Cẩm Nang</a>
+    <a href="#" id="nav-all"      class="active"  onclick="navFilter('all',this)">🏠 Trang Chủ</a>
+    <a href="#products-section"   id="nav-kitchen" onclick="navFilter('kitchen',this)">🍳 Nhà Bếp</a>
+    <a href="#products-section"   id="nav-clean"   onclick="navFilter('clean',this)">🚿 Nhà Tắm & Làm Sạch</a>
+    <a href="#products-section"   id="nav-electric" onclick="navFilter('electric',this)">⚡ Điện Gia Dụng</a>
+    <a href="#products-section"   id="nav-baby"    onclick="navFilter('baby',this)">👶 Mẹ & Bé</a>
+    <a href="#cartSection"        onclick="return true;">🛒 Giỏ Hàng</a>
+    <a href="#orderForm"          onclick="document.getElementById('orderForm').scrollIntoView({behavior:'smooth'});return false;">📦 Đặt Hàng</a>
   </div>
 </nav>
 
@@ -918,7 +918,7 @@ footer {
     </div>
 
     <!-- ORDER FORM -->
-    <div class="order-form">
+    <div class="order-form" id="orderForm">
       <div class="order-form-title">📦 Thông Tin Đặt Hàng</div>
       <div class="form-row">
         <div class="form-group">
@@ -980,18 +980,30 @@ footer {
 
 <script>
 const products = [
-  { id:1,  name:"Nồi chiên không dầu Gaabor",     price:890000,  oldPrice:1200000, cat:"electric", badge:"HOT",  img:"https://images.unsplash.com/photo-1648978855360-82fcb3528b5e?w=400&fit=crop" },
-  { id:2,  name:"Máy pha cà phê capsule",           price:1250000, oldPrice:1600000, cat:"kitchen",  badge:"NEW",  img:"https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=400&fit=crop" },
-  { id:3,  name:"Nước giặt đậm đặc Animo 3L",      price:121000,                    cat:"clean",    badge:"NEW",  img:"https://images.unsplash.com/photo-1626806787461-102c1bfaaea1?w=400&fit=crop" },
-  { id:4,  name:"Máy xay sinh tố đa năng",          price:450000,  oldPrice:580000,  cat:"kitchen",  badge:"SALE", img:"https://images.unsplash.com/photo-1570197788417-0e82375c9371?w=400&fit=crop" },
-  { id:5,  name:"Ấm đun siêu tốc Gaabor",           price:320000,                    cat:"electric", badge:"NEW",  img:"https://images.unsplash.com/photo-1585664811087-47f65abbad64?w=400&fit=crop" },
-  { id:6,  name:"Túi rác tiện dụng Nachi 34x70",   price:83000,                     cat:"clean",                  img:"https://images.unsplash.com/photo-1604187351574-c75ca79f5807?w=400&fit=crop" },
-  { id:7,  name:"Máy hâm sữa giữ nhiệt thông minh",price:680000,  oldPrice:850000,  cat:"baby",     badge:"HOT",  img:"https://images.unsplash.com/photo-1590683513540-de765c1e75aa?w=400&fit=crop" },
-  { id:8,  name:"Bình đun nước thông minh 1.5L",   price:540000,                    cat:"electric", badge:"NEW",  img:"https://images.unsplash.com/photo-1544787219-7f47ccb76574?w=400&fit=crop" },
-  { id:9,  name:"Chổi lau nhà tự vắt thông minh",  price:280000,                    cat:"clean",                  img:"https://images.unsplash.com/photo-1527515545081-5db817172677?w=400&fit=crop" },
-  { id:10, name:"Bộ dao nhà bếp inox cao cấp",      price:390000,  oldPrice:490000,  cat:"kitchen",  badge:"SALE", img:"https://images.unsplash.com/photo-1593618998160-e34014e67546?w=400&fit=crop" },
-  { id:11, name:"Máy hút bụi cầm tay mini",         price:750000,                    cat:"electric",               img:"https://images.unsplash.com/photo-1558317374-067fb5f30001?w=400&fit=crop" },
-  { id:12, name:"Khăn xô sơ sinh cotton 100%",      price:95000,                     cat:"baby",     badge:"NEW",  img:"https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=400&fit=crop" }
+  { id:1,  name:"Nồi chiên không dầu Gaabor",      price:890000,  oldPrice:1200000, cat:"electric", badge:"HOT",
+    img:"https://images.unsplash.com/photo-1626197031507-c17099753214?w=400&fit=crop&q=80" },
+  { id:2,  name:"Máy pha cà phê capsule",            price:1250000, oldPrice:1600000, cat:"kitchen",  badge:"NEW",
+    img:"https://images.unsplash.com/photo-1510017803434-a899398421b3?w=400&fit=crop&q=80" },
+  { id:3,  name:"Nước giặt đậm đặc Animo 3L",       price:121000,                    cat:"clean",    badge:"NEW",
+    img:"https://images.unsplash.com/photo-1582735689369-4fe89db7114c?w=400&fit=crop&q=80" },
+  { id:4,  name:"Máy xay sinh tố đa năng",           price:450000,  oldPrice:580000,  cat:"kitchen",  badge:"SALE",
+    img:"https://images.unsplash.com/photo-1570197788417-0e82375c9371?w=400&fit=crop&q=80" },
+  { id:5,  name:"Ấm đun siêu tốc Gaabor",            price:320000,                    cat:"electric", badge:"NEW",
+    img:"https://images.unsplash.com/photo-1592187220793-a7a2ac428f33?w=400&fit=crop&q=80" },
+  { id:6,  name:"Túi rác tiện dụng Nachi 34x70",    price:83000,                     cat:"clean",
+    img:"https://images.unsplash.com/photo-1604187351574-c75ca79f5807?w=400&fit=crop&q=80" },
+  { id:7,  name:"Máy hâm sữa giữ nhiệt thông minh", price:680000,  oldPrice:850000,  cat:"baby",     badge:"HOT",
+    img:"https://images.unsplash.com/photo-1555252333-9f8e92e65df9?w=400&fit=crop&q=80" },
+  { id:8,  name:"Bình đun nước thông minh 1.5L",    price:540000,                    cat:"electric", badge:"NEW",
+    img:"https://images.unsplash.com/photo-1585664811087-47f65abbad64?w=400&fit=crop&q=80" },
+  { id:9,  name:"Chổi lau nhà tự vắt thông minh",   price:280000,                    cat:"clean",
+    img:"https://images.unsplash.com/photo-1563453392212-326f5e854473?w=400&fit=crop&q=80" },
+  { id:10, name:"Bộ dao nhà bếp inox cao cấp",       price:390000,  oldPrice:490000,  cat:"kitchen",  badge:"SALE",
+    img:"https://images.unsplash.com/photo-1593618998160-e34014e67546?w=400&fit=crop&q=80" },
+  { id:11, name:"Máy hút bụi cầm tay mini",          price:750000,                    cat:"electric",
+    img:"https://images.unsplash.com/photo-1558317374-067fb5f30001?w=400&fit=crop&q=80" },
+  { id:12, name:"Khăn xô sơ sinh cotton 100%",       price:95000,                     cat:"baby",     badge:"NEW",
+    img:"https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=400&fit=crop&q=80" }
 ];
 
 // ── Cart: persist với localStorage ──
@@ -1000,6 +1012,23 @@ try { cart = JSON.parse(localStorage.getItem('ttsh_cart')) || []; } catch(e) { c
 
 function saveCart() {
   try { localStorage.setItem('ttsh_cart', JSON.stringify(cart)); } catch(e) {}
+}
+
+// ── Nav menu filter ──
+function navFilter(f, el) {
+  // update nav active state
+  document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
+  el.classList.add('active');
+  // update filter chips
+  activeFilter = f;
+  priceFilter = null;
+  document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
+  const chipMap = { all:0, kitchen:1, electric:2, clean:3, baby:4 };
+  const chips = document.querySelectorAll('.filter-chip');
+  if (chipMap[f] !== undefined) chips[chipMap[f]].classList.add('active');
+  renderProducts();
+  // scroll to products
+  setTimeout(() => document.getElementById('products-section').scrollIntoView({ behavior:'smooth' }), 50);
 }
 
 // ── Filter state ──
