@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Thu Trang Smart Home</title>
+<title>Thu Trang Smart Home - Đồ Gia Dụng Thông Minh</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Be+Vietnam+Pro:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -184,7 +184,7 @@ nav a.active { color: var(--gold); border-bottom-color: var(--gold); }
   position: absolute;
   inset: 0;
   background: radial-gradient(ellipse at 30% 50%, rgba(201,168,76,0.12) 0%, transparent 60%),
-              radial-gradient(ellipse at 80% 20%, rgba(201,168,76,0.06) 0%, transparent 50%);
+                radial-gradient(ellipse at 80% 20%, rgba(201,168,76,0.06) 0%, transparent 50%);
 }
 .hero-inner {
   max-width: 1300px;
@@ -197,7 +197,6 @@ nav a.active { color: var(--gold); border-bottom-color: var(--gold); }
   gap: 40px;
   align-items: center;
 }
-.hero-text {}
 .hero-badge {
   display: inline-flex;
   align-items: center;
@@ -267,7 +266,6 @@ nav a.active { color: var(--gold); border-bottom-color: var(--gold); }
   gap: 32px;
   margin-top: 40px;
 }
-.stat { }
 .stat-num { font-family: 'Playfair Display', serif; font-size: 28px; color: var(--gold); font-weight: 700; }
 .stat-label { font-size: 12px; color: var(--text-muted); letter-spacing: 1px; }
 
@@ -292,9 +290,7 @@ nav a.active { color: var(--gold); border-bottom-color: var(--gold); }
   transition: opacity 0.3s;
 }
 .hero-card:hover img { opacity: 1; }
-.hero-card-info {
-  padding: 10px 12px;
-}
+.hero-card-info { padding: 10px 12px; }
 .hero-card-name { font-size: 12px; font-weight: 600; }
 .hero-card-price { font-size: 11px; color: var(--gold); margin-top: 2px; }
 .hero-card.span2 { grid-column: span 2; }
@@ -391,12 +387,13 @@ nav a.active { color: var(--gold); border-bottom-color: var(--gold); }
 .product-img-wrap {
   position: relative;
   overflow: hidden;
-  background: var(--dark3);
+  background: #fff; /* Nền trắng cho sản phẩm trông sạch sẽ */
 }
 .product-img-wrap img {
   width: 100%;
   height: 210px;
-  object-fit: cover;
+  object-fit: contain;
+  padding: 15px;
   transition: transform 0.4s ease;
 }
 .product-card:hover .product-img-wrap img { transform: scale(1.05); }
@@ -442,6 +439,8 @@ nav a.active { color: var(--gold); border-bottom-color: var(--gold); }
   color: var(--text);
   margin-bottom: 10px;
   line-height: 1.4;
+  height: 2.8em;
+  overflow: hidden;
 }
 .product-footer {
   display: flex;
@@ -507,7 +506,6 @@ nav a.active { color: var(--gold); border-bottom-color: var(--gold); }
   display: flex; align-items: center; justify-content: center;
   font-size: 13px;
   font-weight: 700;
-  font-family: 'Be Vietnam Pro', sans-serif;
 }
 .clear-btn {
   background: transparent;
@@ -515,60 +513,38 @@ nav a.active { color: var(--gold); border-bottom-color: var(--gold); }
   color: var(--red);
   padding: 6px 14px;
   border-radius: 6px;
-  font-family: 'Be Vietnam Pro', sans-serif;
-  font-size: 12px;
   cursor: pointer;
-  transition: all 0.2s;
+  font-size: 12px;
 }
-.clear-btn:hover { background: rgba(232,67,67,0.1); }
 
 .cart-body { padding: 20px 24px; }
-.cart-empty {
-  text-align: center;
-  color: var(--text-muted);
-  padding: 30px;
-  font-size: 14px;
-}
+.cart-empty { text-align: center; color: var(--text-muted); padding: 30px; }
 .cart-item {
   display: flex;
   align-items: center;
   gap: 14px;
   padding: 12px 0;
   border-bottom: 1px solid rgba(255,255,255,0.05);
-  animation: slideIn 0.3s ease;
 }
-@keyframes slideIn { from { opacity: 0; transform: translateX(-10px); } to { opacity: 1; transform: translateX(0); } }
 .cart-item-img {
   width: 56px; height: 56px;
   border-radius: 8px;
-  object-fit: cover;
+  object-fit: contain;
+  background: #fff;
   border: 1px solid rgba(255,255,255,0.1);
 }
 .cart-item-info { flex: 1; }
 .cart-item-name { font-size: 13px; font-weight: 600; margin-bottom: 4px; }
 .cart-item-price { font-size: 13px; color: var(--gold); font-weight: 600; }
 .remove-btn {
-  background: transparent;
-  border: none;
-  color: var(--text-muted);
-  font-size: 16px;
-  cursor: pointer;
-  width: 28px; height: 28px;
-  display: flex; align-items: center; justify-content: center;
-  border-radius: 6px;
-  transition: all 0.2s;
+  background: transparent; border: none; color: var(--text-muted);
+  cursor: pointer; font-size: 16px;
 }
-.remove-btn:hover { background: rgba(232,67,67,0.15); color: var(--red); }
-
-.cart-total-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 16px 0 0;
-  margin-top: 4px;
-  border-top: 1px solid rgba(201,168,76,0.2);
+.qty-controls { display: flex; align-items: center; gap: 8px; margin-top: 6px; }
+.qty-btn {
+  background: var(--dark4); border: 1px solid rgba(201,168,76,0.3);
+  color: var(--gold); width: 26px; height: 26px; border-radius: 6px; cursor: pointer;
 }
-.total-label { font-size: 14px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
 .total-amount { font-family: 'Playfair Display', serif; font-size: 24px; color: var(--gold); font-weight: 700; }
 
 /* === ORDER FORM === */
@@ -579,66 +555,30 @@ nav a.active { color: var(--gold); border-bottom-color: var(--gold); }
   padding: 28px;
   margin-top: 20px;
 }
-.order-form-title {
-  font-family: 'Playfair Display', serif;
-  font-size: 20px;
-  margin-bottom: 20px;
-  color: #fff;
-}
-.form-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 14px;
-  margin-bottom: 14px;
-}
+.order-form-title { font-family: 'Playfair Display', serif; font-size: 20px; margin-bottom: 20px; color: #fff; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px; }
 .form-group { display: flex; flex-direction: column; gap: 6px; }
-.form-label { font-size: 12px; color: var(--text-muted); letter-spacing: 0.5px; text-transform: uppercase; font-weight: 600; }
+.form-label { font-size: 12px; color: var(--text-muted); text-transform: uppercase; font-weight: 600; }
 .form-input {
-  background: var(--dark2);
-  border: 1px solid rgba(255,255,255,0.1);
-  border-radius: 8px;
-  padding: 12px 14px;
-  color: var(--text);
-  font-family: 'Be Vietnam Pro', sans-serif;
-  font-size: 14px;
-  transition: border-color 0.2s;
+  background: var(--dark2); border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 8px; padding: 12px 14px; color: var(--text);
 }
-.form-input:focus { outline: none; border-color: var(--gold); }
-.form-input::placeholder { color: var(--text-muted); }
 .form-full { grid-column: span 2; }
-
 .order-btn {
-  width: 100%;
-  background: linear-gradient(135deg, var(--gold), var(--gold-light));
-  color: var(--dark);
-  border: none;
-  padding: 16px;
-  border-radius: 10px;
-  font-family: 'Be Vietnam Pro', sans-serif;
-  font-weight: 700;
-  font-size: 15px;
-  cursor: pointer;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  margin-top: 6px;
-  transition: all 0.2s;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
+  width: 100%; background: linear-gradient(135deg, var(--gold), var(--gold-light));
+  color: var(--dark); border: none; padding: 16px; border-radius: 10px;
+  font-weight: 700; cursor: pointer; text-transform: uppercase; margin-top: 10px;
 }
-.order-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(201,168,76,0.35); }
 
 /* === FEATURES BAR === */
 .features-bar {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 0;
   background: var(--dark3);
   border: 1px solid rgba(201,168,76,0.15);
   border-radius: 14px;
-  overflow: hidden;
   margin-bottom: 48px;
+  overflow: hidden;
 }
 .feature-item {
   padding: 22px 20px;
@@ -646,149 +586,44 @@ nav a.active { color: var(--gold); border-bottom-color: var(--gold); }
   align-items: center;
   gap: 14px;
   border-right: 1px solid rgba(255,255,255,0.06);
-  transition: background 0.2s;
 }
-.feature-item:last-child { border-right: none; }
-.feature-item:hover { background: rgba(201,168,76,0.04); }
 .feature-icon { font-size: 28px; }
-.feature-text {}
-.feature-name { font-size: 13px; font-weight: 700; color: var(--text); }
-.feature-desc { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
+.feature-name { font-size: 13px; font-weight: 700; }
+.feature-desc { font-size: 11px; color: var(--text-muted); }
 
 /* === TOAST === */
 .toast {
-  position: fixed;
-  bottom: 30px;
-  right: 30px;
-  background: var(--dark3);
-  border: 1px solid rgba(201,168,76,0.4);
-  border-left: 3px solid var(--gold);
-  color: var(--text);
-  padding: 14px 20px;
-  border-radius: 10px;
-  font-size: 14px;
-  font-weight: 500;
-  z-index: 1000;
-  transform: translateX(120px);
-  opacity: 0;
-  transition: all 0.3s ease;
-  max-width: 280px;
+  position: fixed; bottom: 30px; right: 30px;
+  background: var(--dark3); border-left: 3px solid var(--gold);
+  color: var(--text); padding: 14px 20px; border-radius: 10px;
+  z-index: 1000; transform: translateX(120%); transition: 0.3s;
 }
-.toast.show { transform: translateX(0); opacity: 1; }
-
-/* === FOOTER === */
-footer {
-  background: var(--dark2);
-  border-top: 1px solid rgba(201,168,76,0.15);
-  padding: 40px 24px 20px;
-  margin-top: 60px;
-  text-align: center;
-}
-.footer-logo {
-  font-family: 'Playfair Display', serif;
-  font-size: 28px;
-  color: var(--gold);
-  font-weight: 900;
-  margin-bottom: 8px;
-}
-.footer-tagline { font-size: 13px; color: var(--text-muted); margin-bottom: 20px; }
-.footer-links { display: flex; justify-content: center; gap: 24px; flex-wrap: wrap; margin-bottom: 20px; }
-.footer-links a { font-size: 13px; color: var(--text-muted); text-decoration: none; transition: color 0.2s; }
-.footer-links a:hover { color: var(--gold); }
-.footer-copy { font-size: 12px; color: rgba(138,128,112,0.5); padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.04); }
+.toast.show { transform: translateX(0); }
 
 /* === SUCCESS MODAL === */
 .modal-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.8);
-  z-index: 200;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.3s;
-  backdrop-filter: blur(4px);
+  position: fixed; inset: 0; background: rgba(0,0,0,0.8);
+  display: none; align-items: center; justify-content: center; z-index: 2000;
 }
-.modal-overlay.show { opacity: 1; pointer-events: all; }
+.modal-overlay.show { display: flex; }
 .modal {
-  background: var(--dark2);
-  border: 1px solid rgba(201,168,76,0.3);
-  border-radius: 20px;
-  padding: 48px 40px;
-  text-align: center;
-  max-width: 400px;
-  width: 90%;
-  transform: scale(0.9);
-  transition: transform 0.3s;
+  background: var(--dark2); border: 1px solid var(--gold);
+  border-radius: 20px; padding: 40px; text-align: center; max-width: 400px;
 }
-.modal-overlay.show .modal { transform: scale(1); }
-.modal-icon { font-size: 56px; margin-bottom: 16px; }
-.modal-title { font-family: 'Playfair Display', serif; font-size: 24px; color: #fff; margin-bottom: 10px; }
-.modal-msg { font-size: 14px; color: var(--text-muted); line-height: 1.7; margin-bottom: 28px; }
-.modal-close {
-  background: var(--gold);
-  color: var(--dark);
-  border: none;
-  padding: 12px 36px;
-  border-radius: 8px;
-  font-family: 'Be Vietnam Pro', sans-serif;
-  font-weight: 700;
-  font-size: 14px;
-  cursor: pointer;
-}
+.modal-icon { font-size: 50px; margin-bottom: 15px; }
 
-/* === QTY CONTROLS IN CART === */
-.qty-controls {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-top: 6px;
+footer {
+  background: var(--dark2); border-top: 1px solid rgba(201,168,76,0.15);
+  padding: 40px 24px; text-align: center; margin-top: 60px;
 }
-.qty-btn {
-  background: var(--dark4);
-  border: 1px solid rgba(201,168,76,0.3);
-  color: var(--gold);
-  width: 26px; height: 26px;
-  border-radius: 6px;
-  font-size: 16px;
-  cursor: pointer;
-  display: flex; align-items: center; justify-content: center;
-  font-family: monospace;
-  transition: all 0.15s;
-  line-height: 1;
-}
-.qty-btn:hover { background: var(--gold); color: var(--dark); }
-.qty-num {
-  font-size: 14px;
-  font-weight: 700;
-  color: var(--text);
-  min-width: 20px;
-  text-align: center;
-}
-.cart-item-subtotal {
-  font-size: 12px;
-  color: var(--text-muted);
-  margin-top: 2px;
-}
+.footer-logo { font-family: 'Playfair Display', serif; font-size: 28px; color: var(--gold); font-weight: 900; }
 
-/* Responsive */
 @media (max-width: 900px) {
   .hero-inner { grid-template-columns: 1fr; }
   .hero-visual { display: none; }
   .features-bar { grid-template-columns: 1fr 1fr; }
-  .feature-item:nth-child(2) { border-right: none; }
   .form-row { grid-template-columns: 1fr; }
   .form-full { grid-column: span 1; }
-  nav { overflow-x: auto; }
-  .nav-inner { min-width: max-content; }
-}
-@media (max-width: 600px) {
-  .features-bar { grid-template-columns: 1fr; }
-  .feature-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.06); }
-  .header-inner { flex-wrap: wrap; height: auto; padding: 12px 16px; gap: 10px; }
-  .phone-badge { display: none; }
 }
 </style>
 </head>
@@ -807,7 +642,7 @@ footer {
     </div>
     <div class="header-right">
       <div class="phone-badge">📞 0777 105 408</div>
-      <button class="cart-btn" onclick="scrollToCart()">
+      <button class="cart-btn" onclick="document.getElementById('cartSection').scrollIntoView({behavior:'smooth'})">
         🛒 Giỏ hàng
         <span class="cart-badge" id="cartBadge">0</span>
       </button>
@@ -818,13 +653,11 @@ footer {
 <!-- NAV -->
 <nav>
   <div class="nav-inner">
-    <a href="#" id="nav-all"      class="active"  onclick="navFilter('all',this)">🏠 Trang Chủ</a>
-    <a href="#products-section"   id="nav-kitchen" onclick="navFilter('kitchen',this)">🍳 Nhà Bếp</a>
-    <a href="#products-section"   id="nav-clean"   onclick="navFilter('clean',this)">🚿 Nhà Tắm & Làm Sạch</a>
-    <a href="#products-section"   id="nav-electric" onclick="navFilter('electric',this)">⚡ Điện Gia Dụng</a>
-    <a href="#products-section"   id="nav-baby"    onclick="navFilter('baby',this)">👶 Mẹ & Bé</a>
-    <a href="#cartSection"        onclick="return true;">🛒 Giỏ Hàng</a>
-    <a href="#orderForm"          onclick="document.getElementById('orderForm').scrollIntoView({behavior:'smooth'});return false;">📦 Đặt Hàng</a>
+    <a href="#" class="active" onclick="navFilter('all',this)">🏠 Trang Chủ</a>
+    <a href="#products-section" onclick="navFilter('kitchen',this)">🍳 Nhà Bếp</a>
+    <a href="#products-section" onclick="navFilter('clean',this)">🚿 Làm Sạch</a>
+    <a href="#products-section" onclick="navFilter('electric',this)">⚡ Điện Gia Dụng</a>
+    <a href="#products-section" onclick="navFilter('baby',this)">👶 Mẹ & Bé</a>
   </div>
 </nav>
 
@@ -842,21 +675,20 @@ footer {
       <div class="hero-stats">
         <div class="stat"><div class="stat-num">500+</div><div class="stat-label">Sản phẩm</div></div>
         <div class="stat"><div class="stat-num">12K+</div><div class="stat-label">Khách hàng</div></div>
-        <div class="stat"><div class="stat-num">5★</div><div class="stat-label">Đánh giá</div></div>
       </div>
     </div>
     <div class="hero-visual">
       <div class="hero-card">
-        <img src="https://images.unsplash.com/photo-1648978855360-82fcb3528b5e?w=400&fit=crop" alt="Nồi chiên">
-        <div class="hero-card-info"><div class="hero-card-name">Nồi chiên không dầu</div><div class="hero-card-price">890.000đ</div></div>
+        <img src="https://p-vn.pstatic.net/2023/11/24/1700795435987_Gaabor-Air-Fryer.jpg" alt="Nồi chiên">
+        <div class="hero-card-info"><div class="hero-card-name">Nồi chiên Gaabor</div><div class="hero-card-price">890.000đ</div></div>
       </div>
       <div class="hero-card">
-        <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=400&fit=crop" alt="Máy pha cà phê">
-        <div class="hero-card-info"><div class="hero-card-name">Máy pha cà phê</div><div class="hero-card-price">1.250.000đ</div></div>
+        <img src="https://down-vn.img.susercontent.com/file/vn-11134207-7r98o-llyi0b7p0f2x93" alt="Ấm siêu tốc">
+        <div class="hero-card-info"><div class="hero-card-name">Ấm đun siêu tốc</div><div class="hero-card-price">320.000đ</div></div>
       </div>
       <div class="hero-card span2">
-        <img src="https://images.unsplash.com/photo-1593618998160-e34014e67546?w=600&fit=crop" alt="Dao bếp">
-        <div class="hero-card-info"><div class="hero-card-name">Bộ dao nhà bếp inox</div><div class="hero-card-price">390.000đ</div></div>
+        <img src="https://down-vn.img.susercontent.com/file/vn-11134207-7qukw-ljx6q6u8y0n012" alt="Nước giặt">
+        <div class="hero-card-info"><div class="hero-card-name">Nước giặt Animo 3L</div><div class="hero-card-price">121.000đ</div></div>
       </div>
     </div>
   </div>
@@ -864,12 +696,11 @@ footer {
 
 <!-- MAIN -->
 <main class="main">
-
   <!-- FEATURES -->
   <div class="features-bar">
-    <div class="feature-item"><span class="feature-icon">🚚</span><div class="feature-text"><div class="feature-name">Miễn phí vận chuyển</div><div class="feature-desc">Đơn hàng từ 500K</div></div></div>
-    <div class="feature-item"><span class="feature-icon">🔄</span><div class="feature-text"><div class="feature-name">Đổi trả dễ dàng</div><div class="feature-desc">Trong vòng 30 ngày</div></div></div>
-    <div class="feature-item"><span class="feature-icon">🛡️</span><div class="feature-text"><div class="feature-name">Bảo hành chính hãng</div><div class="feature-desc">12–24 tháng</div></div></div>
+    <div class="feature-item"><span class="feature-icon">🚚</span><div class="feature-text"><div class="feature-name">Miễn phí giao hàng</div><div class="feature-desc">Đơn từ 500K</div></div></div>
+    <div class="feature-item"><span class="feature-icon">🔄</span><div class="feature-text"><div class="feature-name">Đổi trả 30 ngày</div><div class="feature-desc">Yên tâm mua sắm</div></div></div>
+    <div class="feature-item"><span class="feature-icon">🛡️</span><div class="feature-text"><div class="feature-name">Bảo hành 12th</div><div class="feature-desc">Chính hãng 100%</div></div></div>
     <div class="feature-item"><span class="feature-icon">💬</span><div class="feature-text"><div class="feature-name">Hỗ trợ 24/7</div><div class="feature-desc">Tư vấn tận tâm</div></div></div>
   </div>
 
@@ -886,8 +717,6 @@ footer {
       <button class="filter-chip" onclick="setFilter('electric', this)">⚡ Điện gia dụng</button>
       <button class="filter-chip" onclick="setFilter('clean', this)">🌿 Làm sạch</button>
       <button class="filter-chip" onclick="setFilter('baby', this)">👶 Mẹ & bé</button>
-      <button class="filter-chip" onclick="setPriceFilter(500000, this)">Dưới 500K</button>
-      <button class="filter-chip" onclick="setPriceFilter(1000000, this)">Dưới 1 triệu</button>
     </div>
 
     <div class="products-grid" id="productList"></div>
@@ -899,19 +728,15 @@ footer {
       <h2 class="section-title">🛒 Giỏ <span>Hàng</span></h2>
       <div class="section-line"></div>
     </div>
-
     <div class="cart-panel">
       <div class="cart-header">
-        <div class="cart-title">
-          Giỏ hàng của bạn
-          <span class="cart-count-big" id="cartCountBig">0</span>
-        </div>
+        <div class="cart-title">Giỏ hàng của bạn <span class="cart-count-big" id="cartCountBig">0</span></div>
         <button class="clear-btn" onclick="clearCart()">✕ Xoá tất cả</button>
       </div>
       <div class="cart-body">
-        <div id="cartList"><div class="cart-empty">Chưa có sản phẩm nào trong giỏ hàng</div></div>
-        <div class="cart-total-row">
-          <span class="total-label">Tổng cộng</span>
+        <div id="cartList"><div class="cart-empty">Chưa có sản phẩm nào</div></div>
+        <div style="display: flex; justify-content: space-between; align-items: center; padding-top: 20px; border-top: 1px solid #333;">
+          <span style="color: var(--text-muted);">Tổng cộng:</span>
           <span class="total-amount" id="totalAmount">0đ</span>
         </div>
       </div>
@@ -921,289 +746,171 @@ footer {
     <div class="order-form" id="orderForm">
       <div class="order-form-title">📦 Thông Tin Đặt Hàng</div>
       <div class="form-row">
-        <div class="form-group">
-          <label class="form-label">Họ và tên *</label>
-          <input class="form-input" id="custName" placeholder="Nguyễn Văn A">
-        </div>
-        <div class="form-group">
-          <label class="form-label">Số điện thoại *</label>
-          <input class="form-input" id="custPhone" placeholder="0912 345 678">
-        </div>
+        <div class="form-group"><label class="form-label">Họ tên *</label><input class="form-input" id="custName" placeholder="Nguyễn Văn A"></div>
+        <div class="form-group"><label class="form-label">SĐT *</label><input class="form-input" id="custPhone" placeholder="09xx xxx xxx"></div>
       </div>
-      <div class="form-row">
-        <div class="form-group form-full">
-          <label class="form-label">Địa chỉ giao hàng *</label>
-          <input class="form-input" id="custAddress" placeholder="Số nhà, tên đường, phường/xã, quận/huyện, tỉnh/thành phố">
-        </div>
-      </div>
-      <div class="form-row">
-        <div class="form-group form-full">
-          <label class="form-label">Ghi chú (nếu có)</label>
-          <input class="form-input" id="custNote" placeholder="Giao hàng giờ hành chính, gọi trước khi giao...">
-        </div>
-      </div>
-      <button class="order-btn" onclick="placeOrder()">
-        ✦ Đặt Hàng Ngay
-      </button>
+      <div class="form-row"><div class="form-group form-full"><label class="form-label">Địa chỉ *</label><input class="form-input" id="custAddress" placeholder="Địa chỉ nhận hàng"></div></div>
+      <button class="order-btn" onclick="placeOrder()">Đặt Hàng Ngay</button>
     </div>
   </div>
-
 </main>
 
-<!-- FOOTER -->
 <footer>
   <div class="footer-logo">Thu Trang Smart Home</div>
-  <div class="footer-tagline">Đồ dùng thông minh — Cuộc sống tiện nghi</div>
-  <div class="footer-links">
-    <a href="#">Giới thiệu</a>
-    <a href="#">Sản phẩm</a>
-    <a href="#">Khuyến mãi</a>
-    <a href="#">Cẩm nang</a>
-    <a href="#">Liên hệ</a>
-    <a href="#">Chính sách</a>
-  </div>
-  <div class="footer-copy">© 2025 Thu Trang Smart Home — giadung-thongminh.com</div>
+  <p style="margin-top: 10px; color: var(--text-muted);">© 2026 Thu Trang Smart Home — Giadung-thongminh.com</p>
 </footer>
 
-<!-- TOAST -->
-<div class="toast" id="toast"></div>
+<div class="toast" id="toast">Đã thêm vào giỏ hàng!</div>
 
-<!-- SUCCESS MODAL -->
 <div class="modal-overlay" id="modalOverlay">
   <div class="modal">
     <div class="modal-icon">🎉</div>
-    <div class="modal-title">Đặt hàng thành công!</div>
-    <div class="modal-msg" id="modalMsg"></div>
-    <button class="modal-close" onclick="closeModal()">Tiếp tục mua sắm</button>
+    <h2 style="color:#fff; margin-bottom:10px;">Đặt hàng thành công!</h2>
+    <p id="modalMsg" style="color:var(--text-muted); line-height:1.6; margin-bottom:20px;"></p>
+    <button class="btn-primary" onclick="closeModal()">Tiếp tục mua sắm</button>
   </div>
 </div>
 
 <script>
 const products = [
-  { id:1,  name:"Nồi chiên không dầu Gaabor",      price:890000,  oldPrice:1200000, cat:"electric", badge:"HOT",
-    img:"https://images.unsplash.com/photo-1626197031507-c17099753214?w=400&fit=crop&q=80" },
-  { id:2,  name:"Máy pha cà phê capsule",            price:1250000, oldPrice:1600000, cat:"kitchen",  badge:"NEW",
-    img:"https://images.unsplash.com/photo-1510017803434-a899398421b3?w=400&fit=crop&q=80" },
-  { id:3,  name:"Nước giặt đậm đặc Animo 3L",       price:121000,                    cat:"clean",    badge:"NEW",
-    img:"https://images.unsplash.com/photo-1582735689369-4fe89db7114c?w=400&fit=crop&q=80" },
-  { id:4,  name:"Máy xay sinh tố đa năng",           price:450000,  oldPrice:580000,  cat:"kitchen",  badge:"SALE",
-    img:"https://images.unsplash.com/photo-1570197788417-0e82375c9371?w=400&fit=crop&q=80" },
-  { id:5,  name:"Ấm đun siêu tốc Gaabor",            price:320000,                    cat:"electric", badge:"NEW",
-    img:"https://images.unsplash.com/photo-1592187220793-a7a2ac428f33?w=400&fit=crop&q=80" },
-  { id:6,  name:"Túi rác tiện dụng Nachi 34x70",    price:83000,                     cat:"clean",
-    img:"https://images.unsplash.com/photo-1604187351574-c75ca79f5807?w=400&fit=crop&q=80" },
-  { id:7,  name:"Máy hâm sữa giữ nhiệt thông minh", price:680000,  oldPrice:850000,  cat:"baby",     badge:"HOT",
-    img:"https://images.unsplash.com/photo-1555252333-9f8e92e65df9?w=400&fit=crop&q=80" },
-  { id:8,  name:"Bình đun nước thông minh 1.5L",    price:540000,                    cat:"electric", badge:"NEW",
-    img:"https://images.unsplash.com/photo-1585664811087-47f65abbad64?w=400&fit=crop&q=80" },
-  { id:9,  name:"Chổi lau nhà tự vắt thông minh",   price:280000,                    cat:"clean",
-    img:"https://images.unsplash.com/photo-1563453392212-326f5e854473?w=400&fit=crop&q=80" },
-  { id:10, name:"Bộ dao nhà bếp inox cao cấp",       price:390000,  oldPrice:490000,  cat:"kitchen",  badge:"SALE",
-    img:"https://images.unsplash.com/photo-1593618998160-e34014e67546?w=400&fit=crop&q=80" },
-  { id:11, name:"Máy hút bụi cầm tay mini",          price:750000,                    cat:"electric",
-    img:"https://images.unsplash.com/photo-1558317374-067fb5f30001?w=400&fit=crop&q=80" },
-  { id:12, name:"Khăn xô sơ sinh cotton 100%",       price:95000,                     cat:"baby",     badge:"NEW",
-    img:"https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=400&fit=crop&q=80" }
+  { id:1,  name:"Nồi chiên không dầu Gaabor 4L",      price:890000,  oldPrice:1200000, cat:"electric", badge:"HOT",
+    img:"https://p-vn.pstatic.net/2023/11/24/1700795435987_Gaabor-Air-Fryer.jpg" },
+  { id:2,  name:"Máy pha cà phê Capsule",            price:1250000, oldPrice:1600000, cat:"kitchen",  badge:"NEW",
+    img:"https://images.unsplash.com/photo-1510017803434-a899398421b3?w=400&q=80" },
+  { id:3,  name:"Nước giặt Animo kháng khuẩn 3L",      price:121000,                    cat:"clean",    badge:"NEW",
+    img:"https://down-vn.img.susercontent.com/file/vn-11134207-7qukw-ljx6q6u8y0n012" },
+  { id:4,  name:"Máy xay sinh tố cầm tay",             price:450000,  oldPrice:580000,  cat:"kitchen",  badge:"SALE",
+    img:"https://images.unsplash.com/photo-1570197788417-0e82375c9371?w=400&q=80" },
+  { id:5,  name:"Ấm đun siêu tốc Gaabor",              price:320000,                    cat:"electric", badge:"NEW",
+    img:"https://down-vn.img.susercontent.com/file/vn-11134207-7r98o-llyi0b7p0f2x93" },
+  { id:6,  name:"Túi rác tự hủy sinh học Nachi",       price:83000,                     cat:"clean",
+    img:"https://down-vn.img.susercontent.com/file/vn-11134207-7qukw-lgv8y2p6u5v5e3" },
+  { id:7,  name:"Máy hâm sữa tiệt trùng thông minh",   price:680000,  oldPrice:850000,  cat:"baby",     badge:"HOT",
+    img:"https://images.unsplash.com/photo-1555252333-9f8e92e65df9?w=400&q=80" },
+  { id:8,  name:"Bình đun nước pha sữa giữ nhiệt",     price:540000,                    cat:"electric", badge:"NEW",
+    img:"https://images.unsplash.com/photo-1585664811087-47f65abbad64?w=400&q=80" },
+  { id:9,  name:"Chổi lau nhà tự vắt 360 độ",          price:280000,                    cat:"clean",
+    img:"https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=400&q=80" },
+  { id:10, name:"Bộ dao Inox 7 món cao cấp",           price:390000,  oldPrice:490000,  cat:"kitchen",  badge:"SALE",
+    img:"https://images.unsplash.com/photo-1593618998160-e34014e67546?w=400&q=80" },
+  { id:11, name:"Máy hút bụi cầm tay Deerma",          price:750000,                    cat:"electric",
+    img:"https://images.unsplash.com/photo-1558317374-067fb5f30001?w=400&q=80" },
+  { id:12, name:"Khăn xô sợi tre Animo (Hộp 5)",       price:95000,                     cat:"baby",     badge:"NEW",
+    img:"https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=400&q=80" }
 ];
 
-// ── Cart: persist với localStorage ──
-let cart = [];
-try { cart = JSON.parse(localStorage.getItem('ttsh_cart')) || []; } catch(e) { cart = []; }
-
-function saveCart() {
-  try { localStorage.setItem('ttsh_cart', JSON.stringify(cart)); } catch(e) {}
-}
-
-// ── Nav menu filter ──
-function navFilter(f, el) {
-  // update nav active state
-  document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
-  el.classList.add('active');
-  // update filter chips
-  activeFilter = f;
-  priceFilter = null;
-  document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
-  const chipMap = { all:0, kitchen:1, electric:2, clean:3, baby:4 };
-  const chips = document.querySelectorAll('.filter-chip');
-  if (chipMap[f] !== undefined) chips[chipMap[f]].classList.add('active');
-  renderProducts();
-  // scroll to products
-  setTimeout(() => document.getElementById('products-section').scrollIntoView({ behavior:'smooth' }), 50);
-}
-
-// ── Filter state ──
+let cart = JSON.parse(localStorage.getItem('tt_cart')) || [];
 let activeFilter = 'all';
-let priceFilter = null;
 
-function setFilter(f, el) {
-  activeFilter = f;
-  priceFilter = null;
-  document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
-  el.classList.add('active');
-  renderProducts();
-}
-
-function setPriceFilter(p, el) {
-  priceFilter = p;
-  document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
-  el.classList.add('active');
-  renderProducts();
-}
-
-// ── Helpers ──
 function formatVND(n) { return n.toLocaleString('vi-VN') + 'đ'; }
-function getCatLabel(cat) {
-  return { kitchen:'🍳 Nhà bếp', electric:'⚡ Điện gia dụng', clean:'🌿 Làm sạch', baby:'👶 Mẹ & bé' }[cat] || cat;
-}
 
-// ── Render products ──
 function renderProducts() {
   const keyword = document.getElementById('searchInput').value.toLowerCase();
-  const filtered = products.filter(p =>
-    p.name.toLowerCase().includes(keyword)
-    && (activeFilter === 'all' || p.cat === activeFilter)
-    && (!priceFilter || p.price <= priceFilter)
-  );
-
-  const badgeClass = { HOT:'', SALE:'sale', NEW:'' };
-  const html = filtered.map(p => `
+  const list = document.getElementById('productList');
+  const filtered = products.filter(p => (activeFilter==='all' || p.cat===activeFilter) && p.name.toLowerCase().includes(keyword));
+  
+  list.innerHTML = filtered.map(p => `
     <div class="product-card">
-      ${p.badge ? `<div class="product-badge ${badgeClass[p.badge]||''}">${p.badge}</div>` : ''}
+      ${p.badge ? `<div class="product-badge ${p.badge==='SALE'?'sale':''}">${p.badge}</div>` : ''}
       <div class="product-img-wrap">
-        <img src="${p.img}" alt="${p.name}" loading="lazy">
-        <div class="product-overlay">
-          <button class="quick-add" onclick="addToCart(${p.id})">+ Thêm vào giỏ</button>
-        </div>
+        <img src="${p.img}">
+        <div class="product-overlay"><button class="quick-add" onclick="addToCart(${p.id})">Thêm vào giỏ</button></div>
       </div>
       <div class="product-info">
-        <div class="product-cat">${getCatLabel(p.cat)}</div>
+        <div class="product-cat">${p.cat}</div>
         <div class="product-name">${p.name}</div>
         <div class="product-footer">
-          <div class="product-price">
-            ${formatVND(p.price)}
-            ${p.oldPrice ? `<span class="old-price">${formatVND(p.oldPrice)}</span>` : ''}
-          </div>
+          <div class="product-price">${formatVND(p.price)} ${p.oldPrice ? `<span class="old-price">${formatVND(p.oldPrice)}</span>`:''}</div>
           <button class="add-btn" onclick="addToCart(${p.id})">+</button>
         </div>
       </div>
     </div>
   `).join('');
-
-  document.getElementById('productList').innerHTML = html
-    || '<div class="cart-empty" style="grid-column:1/-1;padding:40px">Không tìm thấy sản phẩm phù hợp</div>';
 }
 
-// ── Cart actions ──
+function setFilter(f, el) {
+  activeFilter = f;
+  document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
+  el.classList.add('active');
+  renderProducts();
+}
+
+function navFilter(f, el) {
+  setFilter(f, document.querySelector(`.filter-chip`)); // Update filter state
+  document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById('products-section').scrollIntoView({behavior:'smooth'});
+}
+
 function addToCart(id) {
-  const existing = cart.find(i => i.id === id);
-  if (existing) {
-    existing.qty++;
-  } else {
-    const p = products.find(x => x.id === id);
-    cart.push({ ...p, qty: 1 });
-  }
-  saveCart();
-  renderCart();
   const p = products.find(x => x.id === id);
-  showToast(`✓ Đã thêm "${p.name}" vào giỏ`);
+  const exist = cart.find(x => x.id === id);
+  if(exist) exist.qty++; else cart.push({...p, qty:1});
+  updateUI();
+  showToast();
 }
 
-function changeQty(idx, delta) {
-  cart[idx].qty += delta;
-  if (cart[idx].qty <= 0) cart.splice(idx, 1);
-  saveCart();
-  renderCart();
-}
+function updateUI() {
+  localStorage.setItem('tt_cart', JSON.stringify(cart));
+  const badge = document.getElementById('cartBadge');
+  const countBig = document.getElementById('cartCountBig');
+  const list = document.getElementById('cartList');
+  const total = document.getElementById('totalAmount');
+  
+  const totalQty = cart.reduce((a,b) => a + b.qty, 0);
+  badge.innerText = totalQty;
+  countBig.innerText = totalQty;
 
-function removeItem(idx) {
-  cart.splice(idx, 1);
-  saveCart();
-  renderCart();
-}
-
-function clearCart() {
-  cart = [];
-  saveCart();
-  renderCart();
-}
-
-// ── Render cart ──
-function renderCart() {
-  const totalQty = cart.reduce((s, i) => s + i.qty, 0);
-  const total    = cart.reduce((s, i) => s + i.price * i.qty, 0);
-
-  document.getElementById('cartBadge').textContent    = totalQty;
-  document.getElementById('cartCountBig').textContent = totalQty;
-  document.getElementById('totalAmount').textContent  = formatVND(total);
-
-  if (!cart.length) {
-    document.getElementById('cartList').innerHTML = '<div class="cart-empty">Chưa có sản phẩm nào trong giỏ hàng</div>';
+  if(cart.length === 0) {
+    list.innerHTML = '<div class="cart-empty">Chưa có sản phẩm nào</div>';
+    total.innerText = '0đ';
     return;
   }
 
-  const html = cart.map((item, i) => `
-    <div class="cart-item">
-      <img class="cart-item-img" src="${item.img}" alt="${item.name}">
-      <div class="cart-item-info">
-        <div class="cart-item-name">${item.name}</div>
-        <div class="cart-item-price">${formatVND(item.price)}</div>
-        <div class="qty-controls">
-          <button class="qty-btn" onclick="changeQty(${i},-1)">−</button>
-          <span class="qty-num">${item.qty}</span>
-          <button class="qty-btn" onclick="changeQty(${i},1)">+</button>
+  let sum = 0;
+  list.innerHTML = cart.map(i => {
+    sum += i.price * i.qty;
+    return `
+      <div class="cart-item">
+        <img src="${i.img}" class="cart-item-img">
+        <div class="cart-item-info">
+          <div class="cart-item-name">${i.name}</div>
+          <div class="cart-item-price">${formatVND(i.price)}</div>
+          <div class="qty-controls">
+            <button class="qty-btn" onclick="changeQty(${i.id},-1)">-</button>
+            <span>${i.qty}</span>
+            <button class="qty-btn" onclick="changeQty(${i.id},1)">+</button>
+          </div>
         </div>
-        ${item.qty > 1 ? `<div class="cart-item-subtotal">Tổng: ${formatVND(item.price * item.qty)}</div>` : ''}
+        <button class="remove-btn" onclick="removeItem(${i.id})">✕</button>
       </div>
-      <button class="remove-btn" onclick="removeItem(${i})">✕</button>
-    </div>
-  `).join('');
-
-  document.getElementById('cartList').innerHTML = html;
+    `;
+  }).join('');
+  total.innerText = formatVND(sum);
 }
 
-// ── Order ──
+function changeQty(id, d) {
+  const i = cart.find(x => x.id === id);
+  if(i) { i.qty += d; if(i.qty <= 0) removeItem(id); }
+  updateUI();
+}
+
+function removeItem(id) { cart = cart.filter(x => x.id !== id); updateUI(); }
+function clearCart() { if(confirm('Xóa giỏ hàng?')) { cart = []; updateUI(); } }
+function showToast() { const t = document.getElementById('toast'); t.classList.add('show'); setTimeout(()=>t.classList.remove('show'),2000); }
+
 function placeOrder() {
-  const name = document.getElementById('custName').value.trim();
-  const phone = document.getElementById('custPhone').value.trim();
-  const addr  = document.getElementById('custAddress').value.trim();
-
-  if (!name)         { showToast('⚠ Vui lòng nhập họ và tên'); return; }
-  if (!phone)        { showToast('⚠ Vui lòng nhập số điện thoại'); return; }
-  if (!addr)         { showToast('⚠ Vui lòng nhập địa chỉ giao hàng'); return; }
-  if (!cart.length)  { showToast('⚠ Giỏ hàng đang trống'); return; }
-
-  const total = cart.reduce((s, i) => s + i.price * i.qty, 0);
-  document.getElementById('modalMsg').innerHTML = `
-    Xin chào <b>${name}</b>! Đơn hàng của bạn trị giá
-    <b style="color:var(--gold)">${formatVND(total)}</b> đã được ghi nhận.<br><br>
-    Chúng tôi sẽ liên hệ qua số <b>${phone}</b> để xác nhận trong vòng 30 phút.
-  `;
+  const n = document.getElementById('custName').value;
+  if(!n || cart.length === 0) { alert('Vui lòng kiểm tra lại thông tin và giỏ hàng!'); return; }
+  document.getElementById('modalMsg').innerText = `Cảm ơn ${n}, đơn hàng của bạn đang được xử lý.`;
   document.getElementById('modalOverlay').classList.add('show');
-  clearCart();
-  ['custName','custPhone','custAddress','custNote'].forEach(id => document.getElementById(id).value = '');
+  cart = []; updateUI();
 }
 
-function closeModal() {
-  document.getElementById('modalOverlay').classList.remove('show');
-}
+function closeModal() { document.getElementById('modalOverlay').classList.remove('show'); }
 
-function scrollToCart() {
-  document.getElementById('cartSection').scrollIntoView({ behavior: 'smooth' });
-}
-
-// ── Toast ──
-let toastTimer;
-function showToast(msg) {
-  const t = document.getElementById('toast');
-  t.textContent = msg;
-  t.classList.add('show');
-  clearTimeout(toastTimer);
-  toastTimer = setTimeout(() => t.classList.remove('show'), 2800);
-}
-
-// ── Init ──
 renderProducts();
-renderCart();
+updateUI();
 </script>
 </body>
 </html>
