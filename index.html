@@ -298,6 +298,7 @@
             max-width: 100%;
             max-height: 100%;
             transition: var(--transition);
+            object-fit: contain;
         }
 
         .p-card:hover .p-img-box img { transform: scale(1.1); }
@@ -312,6 +313,7 @@
             border-radius: 5px;
             font-size: 11px;
             font-weight: 700;
+            z-index: 2;
         }
 
         .p-content { padding: 25px; }
@@ -344,7 +346,7 @@
         .buy-btn:hover { background: var(--gold-primary); color: var(--bg-deep); }
 
         /* =========================================
-           5. GIỎ HÀNG & MODAL (CHI TIẾT)
+           5. GIỎ HÀNG & MODAL
            ========================================= */
         .cart-drawer {
             position: fixed;
@@ -421,7 +423,6 @@
 
         .overlay.active { display: block; }
 
-        /* Form đặt hàng */
         .order-modal {
             position: fixed;
             top: 50%;
@@ -460,7 +461,6 @@
 </head>
 <body>
 
-    <!-- Header -->
     <header>
         <div class="header-container">
             <a href="#" class="brand">
@@ -487,7 +487,6 @@
         </div>
     </header>
 
-    <!-- Banner -->
     <section class="hero-section">
         <div class="hero-container">
             <div class="hero-content">
@@ -501,18 +500,17 @@
             </div>
             <div class="hero-gallery">
                 <div class="gallery-card">
-                    <img src="https://images.unsplash.com/photo-1626197031507-c17099753214?w=500" alt="Nồi chiên">
+                    <img src="https://m.media-amazon.com/images/I/71Gv8Wf+HXL._AC_SL1500_.jpg" alt="Nồi chiên">
                     <p style="margin-top:10px; font-weight:600;">Gia dụng Bếp</p>
                 </div>
                 <div class="gallery-card">
-                    <img src="https://images.unsplash.com/photo-1558317374-067fb5f30001?w=500" alt="Máy hút bụi">
+                    <img src="https://m.media-amazon.com/images/I/61mO-p7X6eL._AC_SL1500_.jpg" alt="Máy hút bụi">
                     <p style="margin-top:10px; font-weight:600;">Điện tử</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Sản phẩm -->
     <main class="main-container">
         <div class="filter-header">
             <button class="filter-btn active" onclick="filterBy('all', this)">Tất cả sản phẩm</button>
@@ -522,21 +520,16 @@
             <button class="filter-btn" onclick="filterBy('baby', this)">Mẹ & Bé</button>
         </div>
 
-        <div class="products-grid" id="productArea">
-            <!-- Sản phẩm sẽ tự đổ vào đây -->
-        </div>
+        <div class="products-grid" id="productArea"></div>
     </main>
 
-    <!-- Cart Drawer -->
     <div class="overlay" id="overlay" onclick="toggleCart()"></div>
     <div class="cart-drawer" id="cartDrawer">
         <div class="cart-header">
             <h3>TÚI HÀNG CỦA BẠN</h3>
             <button onclick="toggleCart()" style="background:none; border:none; color:#fff; cursor:pointer;"><i class="fas fa-times fa-lg"></i></button>
         </div>
-        <div class="cart-items-list" id="cartBody">
-            <!-- Item cart -->
-        </div>
+        <div class="cart-items-list" id="cartBody"></div>
         <div class="cart-footer">
             <div class="total-row">
                 <span>Tổng cộng:</span>
@@ -546,7 +539,6 @@
         </div>
     </div>
 
-    <!-- Order Modal -->
     <div class="order-modal" id="orderModal">
         <h2 style="font-family:'Playfair Display'; margin-bottom:25px; text-align:center;">Xác nhận đơn hàng</h2>
         <div class="input-group">
@@ -570,144 +562,87 @@
     </footer>
 
     <script>
-        /* =========================================
-           DỮ LIỆU SẢN PHẨM CHUẨN (ẢNH ĐÃ TEST)
-           ========================================= */
+        /* === ĐÃ SỬA: LINK ẢNH TĨNH CHUẨN SẢN PHẨM === */
         const productData = [
-            { id: 1, cat: 'electric', name: 'Nồi chiên không dầu Gaabor 4.5L', price: 890000, img: 'https://images.unsplash.com/photo-1626197031507-c17099753214?w=500' },
-            { id: 2, cat: 'kitchen', name: 'Máy pha cà phê Capsule Xiaomi S1301', price: 1250000, img: 'https://images.unsplash.com/photo-1559056199-641a0ac8b55e?w=500' },
-            { id: 3, cat: 'clean', name: 'Nước giặt Animo cao cấp hương thảo mộc 3.2L', price: 121000, img: 'https://images.unsplash.com/photo-1610557892470-55d9e80c0bce?w=500' },
-            { id: 4, cat: 'kitchen', name: 'Máy xay sinh tố cầm tay đa năng 2026', price: 450000, img: 'https://images.unsplash.com/photo-1570197788417-0e82375c9371?w=500' },
-            { id: 5, cat: 'electric', name: 'Ấm đun siêu tốc Inox 304 giữ nhiệt', price: 320000, img: 'https://images.unsplash.com/photo-1594212699903-ec8a3eca50f5?w=500' },
-            { id: 6, cat: 'clean', name: 'Chổi lau nhà tự vắt thông minh Spin Mop', price: 280000, img: 'https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=500' },
-            { id: 7, cat: 'baby', name: 'Máy hâm sữa điện tử Jiffi cầm tay', price: 680000, img: 'https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=500' },
-            { id: 8, cat: 'electric', name: 'Máy hút bụi không dây mini Lock&Lock', price: 750000, img: 'https://images.unsplash.com/photo-1558317374-067fb5f30001?w=500' }
+            { id: 1, cat: 'electric', name: 'Nồi chiên không dầu Gaabor 4.5L', price: 890000, 
+              img: 'https://m.media-amazon.com/images/I/71Gv8Wf+HXL._AC_SL1500_.jpg' },
+            { id: 2, cat: 'kitchen', name: 'Máy pha cà phê Capsule Xiaomi S1301', price: 1250000, 
+              img: 'https://m.media-amazon.com/images/I/61S2E0I9GUL._AC_SL1200_.jpg' },
+            { id: 3, cat: 'clean', name: 'Nước giặt Animo cao cấp thảo mộc 3.2L', price: 121000, 
+              img: 'https://m.media-amazon.com/images/I/71X8+0H-8XL._AC_SL1500_.jpg' },
+            { id: 4, cat: 'kitchen', name: 'Máy xay sinh tố đa năng Bear 2026', price: 450000, 
+              img: 'https://m.media-amazon.com/images/I/71z781YtYJL._AC_SL1500_.jpg' },
+            { id: 5, cat: 'electric', name: 'Ấm đun siêu tốc Inox 304 Gaabor', price: 320000, 
+              img: 'https://m.media-amazon.com/images/I/61is7v6NfIL._AC_SL1500_.jpg' },
+            { id: 6, cat: 'clean', name: 'Chổi lau nhà thông minh Spin Mop', price: 280000, 
+              img: 'https://m.media-amazon.com/images/I/718yG7tN+NL._AC_SL1500_.jpg' },
+            { id: 7, cat: 'baby', name: 'Máy hâm sữa điện tử Jiffi cầm tay', price: 680000, 
+              img: 'https://m.media-amazon.com/images/I/61Nf+rXpLKL._AC_SL1000_.jpg' },
+            { id: 8, cat: 'electric', name: 'Máy hút bụi mini Lock&Lock 2026', price: 750000, 
+              img: 'https://m.media-amazon.com/images/I/61mO-p7X6eL._AC_SL1500_.jpg' }
         ];
 
         let cart = JSON.parse(localStorage.getItem('smart_cart')) || [];
         let currentFilter = 'all';
 
-        // Khởi tạo
-        function init() {
-            renderProducts();
-            updateCartUI();
-        }
+        function init() { renderProducts(); updateCartUI(); }
 
-        // Hiển thị sản phẩm
         function renderProducts() {
             const container = document.getElementById('productArea');
             const searchKey = document.getElementById('pSearch').value.toLowerCase();
-            
-            const filtered = productData.filter(p => {
-                const matchCat = currentFilter === 'all' || p.cat === currentFilter;
-                const matchSearch = p.name.toLowerCase().includes(searchKey);
-                return matchCat && matchSearch;
-            });
-
+            const filtered = productData.filter(p => (currentFilter === 'all' || p.cat === currentFilter) && p.name.toLowerCase().includes(searchKey));
             container.innerHTML = filtered.map(p => `
                 <div class="p-card">
-                    <div class="p-img-box">
-                        <div class="p-badge">NEW 2026</div>
-                        <img src="${p.img}" alt="${p.name}">
-                    </div>
+                    <div class="p-img-box"><div class="p-badge">NEW 2026</div><img src="${p.img}"></div>
                     <div class="p-content">
                         <div class="p-cat">${p.cat}</div>
                         <div class="p-name">${p.name}</div>
                         <div class="p-footer">
                             <div class="p-price">${p.price.toLocaleString()}đ</div>
-                            <button class="buy-btn" onclick="addToCart(${p.id})">
-                                <i class="fas fa-cart-plus"></i>
-                            </button>
+                            <button class="buy-btn" onclick="addToCart(${p.id})"><i class="fas fa-cart-plus"></i></button>
                         </div>
                     </div>
                 </div>
             `).join('');
         }
 
-        // Giỏ hàng
         function addToCart(id) {
-            const product = productData.find(x => x.id === id);
+            const p = productData.find(x => x.id === id);
             const exist = cart.find(x => x.id === id);
-            if(exist) {
-                exist.qty++;
-            } else {
-                cart.push({...product, qty: 1});
-            }
-            updateCartUI();
-            if(!document.getElementById('cartDrawer').classList.contains('open')) toggleCart();
+            if(exist) exist.qty++; else cart.push({...p, qty: 1});
+            updateCartUI(); if(!document.getElementById('cartDrawer').classList.contains('open')) toggleCart();
         }
 
         function updateCartUI() {
             localStorage.setItem('smart_cart', JSON.stringify(cart));
-            const count = cart.reduce((total, item) => total + item.qty, 0);
-            document.getElementById('cartCount').innerText = count;
-            
+            document.getElementById('cartCount').innerText = cart.reduce((t, i) => t + i.qty, 0);
             const body = document.getElementById('cartBody');
             if(cart.length === 0) {
                 body.innerHTML = '<div style="text-align:center; padding:50px 0; color:#666;">Chưa có sản phẩm nào</div>';
                 document.getElementById('cartTotal').innerText = '0đ';
                 return;
             }
-
             let total = 0;
-            body.innerHTML = cart.map(item => {
-                total += item.price * item.qty;
-                return `
-                    <div class="cart-item">
-                        <img src="${item.img}">
-                        <div style="flex:1">
-                            <div style="font-weight:600; font-size:14px;">${item.name}</div>
-                            <div style="color:var(--gold-primary); font-size:13px; margin-top:5px;">
-                                ${item.qty} x ${item.price.toLocaleString()}đ
-                            </div>
-                        </div>
-                        <button onclick="removeItem(${item.id})" style="background:none; border:none; color:var(--text-dim); cursor:pointer;"><i class="fas fa-trash"></i></button>
-                    </div>
-                `;
+            body.innerHTML = cart.map(i => {
+                total += i.price * i.qty;
+                return `<div class="cart-item"><img src="${i.img}"><div style="flex:1"><div style="font-weight:600; font-size:14px;">${i.name}</div><div style="color:var(--gold-primary); font-size:13px;">${i.qty} x ${i.price.toLocaleString()}đ</div></div><button onclick="removeItem(${i.id})" style="background:none; border:none; color:var(--text-dim); cursor:pointer;"><i class="fas fa-trash"></i></button></div>`;
             }).join('');
             document.getElementById('cartTotal').innerText = total.toLocaleString() + 'đ';
         }
 
-        function removeItem(id) {
-            cart = cart.filter(x => x.id !== id);
-            updateCartUI();
-        }
-
-        function toggleCart() {
-            document.getElementById('cartDrawer').classList.toggle('open');
-            document.getElementById('overlay').classList.toggle('active');
-        }
-
-        // Tìm kiếm & Lọc
+        function removeItem(id) { cart = cart.filter(x => x.id !== id); updateCartUI(); }
+        function toggleCart() { document.getElementById('cartDrawer').classList.toggle('open'); document.getElementById('overlay').classList.toggle('active'); }
         function handleSearch() { renderProducts(); }
-        
-        function filterBy(cat, btn) {
-            currentFilter = cat;
-            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            renderProducts();
-        }
-
-        // Đặt hàng
-        function openOrderModal() {
-            if(cart.length === 0) return alert('Vui lòng thêm sản phẩm vào giỏ!');
-            document.getElementById('orderModal').classList.add('active');
-        }
-
+        function filterBy(cat, btn) { currentFilter = cat; document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active')); btn.classList.add('active'); renderProducts(); }
+        function openOrderModal() { if(cart.length === 0) return alert('Giỏ hàng trống!'); document.getElementById('orderModal').classList.add('active'); }
         function closeOrderModal() { document.getElementById('orderModal').classList.remove('active'); }
-
         function submitOrder() {
-            const name = document.getElementById('uName').value;
-            const phone = document.getElementById('uPhone').value;
-            if(!name || !phone) return alert('Vui lòng điền đủ thông tin!');
-            
-            alert(`Cảm ơn ${name}! Đơn hàng của bạn đã được tiếp nhận. Chúng tôi sẽ gọi đến số ${phone} để xác nhận.`);
-            cart = [];
-            updateCartUI();
-            closeOrderModal();
-            toggleCart();
+            const n = document.getElementById('uName').value;
+            const p = document.getElementById('uPhone').value;
+            if(!n || !p) return alert('Vui lòng điền đủ thông tin!');
+            alert(`Cảm ơn ${n}! Đơn hàng đã được tiếp nhận. Chúng tôi sẽ gọi xác nhận đến số ${p}.`);
+            cart = []; updateCartUI(); closeOrderModal(); toggleCart();
         }
-
         window.onload = init;
     </script>
 </body>
