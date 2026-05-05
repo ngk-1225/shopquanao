@@ -739,6 +739,40 @@ footer {
   cursor: pointer;
 }
 
+/* === QTY CONTROLS IN CART === */
+.qty-controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 6px;
+}
+.qty-btn {
+  background: var(--dark4);
+  border: 1px solid rgba(201,168,76,0.3);
+  color: var(--gold);
+  width: 26px; height: 26px;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  font-family: monospace;
+  transition: all 0.15s;
+  line-height: 1;
+}
+.qty-btn:hover { background: var(--gold); color: var(--dark); }
+.qty-num {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text);
+  min-width: 20px;
+  text-align: center;
+}
+.cart-item-subtotal {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
 /* Responsive */
 @media (max-width: 900px) {
   .hero-inner { grid-template-columns: 1fr; }
@@ -946,21 +980,29 @@ footer {
 
 <script>
 const products = [
-  { id:1, name:"Nồi chiên không dầu Gaabor", price:890000, oldPrice:1200000, cat:"electric", badge:"HOT", img:"https://images.unsplash.com/photo-1648978855360-82fcb3528b5e?w=400&fit=crop" },
-  { id:2, name:"Máy pha cà phê capsule", price:1250000, oldPrice:1600000, cat:"kitchen", badge:"NEW", img:"https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=400&fit=crop" },
-  { id:3, name:"Nước giặt đậm đặc Animo 3L", price:121000, cat:"clean", badge:"NEW", img:"https://images.unsplash.com/photo-1626806787461-102c1bfaaea1?w=400&fit=crop" },
-  { id:4, name:"Máy xay sinh tố đa năng", price:450000, oldPrice:580000, cat:"kitchen", badge:"SALE", img:"https://images.unsplash.com/photo-1570197788417-0e82375c9371?w=400&fit=crop" },
-  { id:5, name:"Máy đun nước siêu tốc Gaabor", price:320000, cat:"electric", badge:"NEW", img:"https://images.unsplash.com/photo-1585664811087-47f65abbad64?w=400&fit=crop" },
-  { id:6, name:"Túi rác tiện dụng Nachi 34x70", price:83000, cat:"clean", img:"https://images.unsplash.com/photo-1604187351574-c75ca79f5807?w=400&fit=crop" },
-  { id:7, name:"Máy hâm sữa giữ nhiệt thông minh", price:680000, oldPrice:850000, cat:"baby", badge:"HOT", img:"https://images.unsplash.com/photo-1590683513540-de765c1e75aa?w=400&fit=crop" },
-  { id:8, name:"Bình đun nước thông minh 1.5L", price:540000, cat:"electric", badge:"NEW", img:"https://images.unsplash.com/photo-1544787219-7f47ccb76574?w=400&fit=crop" },
-  { id:9, name:"Chổi lau nhà tự vắt thông minh", price:280000, cat:"clean", img:"https://images.unsplash.com/photo-1527515545081-5db817172677?w=400&fit=crop" },
-  { id:10, name:"Bộ dao nhà bếp inox cao cấp", price:390000, oldPrice:490000, cat:"kitchen", badge:"SALE", img:"https://images.unsplash.com/photo-1593618998160-e34014e67546?w=400&fit=crop" },
-  { id:11, name:"Máy hút bụi cầm tay mini", price:750000, cat:"electric", img:"https://images.unsplash.com/photo-1558317374-067fb5f30001?w=400&fit=crop" },
-  { id:12, name:"Khăn xô sơ sinh cotton 100%", price:95000, cat:"baby", badge:"NEW", img:"https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=400&fit=crop" }
+  { id:1,  name:"Nồi chiên không dầu Gaabor",     price:890000,  oldPrice:1200000, cat:"electric", badge:"HOT",  img:"https://images.unsplash.com/photo-1648978855360-82fcb3528b5e?w=400&fit=crop" },
+  { id:2,  name:"Máy pha cà phê capsule",           price:1250000, oldPrice:1600000, cat:"kitchen",  badge:"NEW",  img:"https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=400&fit=crop" },
+  { id:3,  name:"Nước giặt đậm đặc Animo 3L",      price:121000,                    cat:"clean",    badge:"NEW",  img:"https://images.unsplash.com/photo-1626806787461-102c1bfaaea1?w=400&fit=crop" },
+  { id:4,  name:"Máy xay sinh tố đa năng",          price:450000,  oldPrice:580000,  cat:"kitchen",  badge:"SALE", img:"https://images.unsplash.com/photo-1570197788417-0e82375c9371?w=400&fit=crop" },
+  { id:5,  name:"Ấm đun siêu tốc Gaabor",           price:320000,                    cat:"electric", badge:"NEW",  img:"https://images.unsplash.com/photo-1585664811087-47f65abbad64?w=400&fit=crop" },
+  { id:6,  name:"Túi rác tiện dụng Nachi 34x70",   price:83000,                     cat:"clean",                  img:"https://images.unsplash.com/photo-1604187351574-c75ca79f5807?w=400&fit=crop" },
+  { id:7,  name:"Máy hâm sữa giữ nhiệt thông minh",price:680000,  oldPrice:850000,  cat:"baby",     badge:"HOT",  img:"https://images.unsplash.com/photo-1590683513540-de765c1e75aa?w=400&fit=crop" },
+  { id:8,  name:"Bình đun nước thông minh 1.5L",   price:540000,                    cat:"electric", badge:"NEW",  img:"https://images.unsplash.com/photo-1544787219-7f47ccb76574?w=400&fit=crop" },
+  { id:9,  name:"Chổi lau nhà tự vắt thông minh",  price:280000,                    cat:"clean",                  img:"https://images.unsplash.com/photo-1527515545081-5db817172677?w=400&fit=crop" },
+  { id:10, name:"Bộ dao nhà bếp inox cao cấp",      price:390000,  oldPrice:490000,  cat:"kitchen",  badge:"SALE", img:"https://images.unsplash.com/photo-1593618998160-e34014e67546?w=400&fit=crop" },
+  { id:11, name:"Máy hút bụi cầm tay mini",         price:750000,                    cat:"electric",               img:"https://images.unsplash.com/photo-1558317374-067fb5f30001?w=400&fit=crop" },
+  { id:12, name:"Khăn xô sơ sinh cotton 100%",      price:95000,                     cat:"baby",     badge:"NEW",  img:"https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=400&fit=crop" }
 ];
 
+// ── Cart: persist với localStorage ──
 let cart = [];
+try { cart = JSON.parse(localStorage.getItem('ttsh_cart')) || []; } catch(e) { cart = []; }
+
+function saveCart() {
+  try { localStorage.setItem('ttsh_cart', JSON.stringify(cart)); } catch(e) {}
+}
+
+// ── Filter state ──
 let activeFilter = 'all';
 let priceFilter = null;
 
@@ -979,20 +1021,25 @@ function setPriceFilter(p, el) {
   renderProducts();
 }
 
+// ── Helpers ──
+function formatVND(n) { return n.toLocaleString('vi-VN') + 'đ'; }
+function getCatLabel(cat) {
+  return { kitchen:'🍳 Nhà bếp', electric:'⚡ Điện gia dụng', clean:'🌿 Làm sạch', baby:'👶 Mẹ & bé' }[cat] || cat;
+}
+
+// ── Render products ──
 function renderProducts() {
   const keyword = document.getElementById('searchInput').value.toLowerCase();
-  let filtered = products.filter(p => {
-    const matchKw = p.name.toLowerCase().includes(keyword);
-    const matchCat = activeFilter === 'all' || p.cat === activeFilter;
-    const matchPrice = !priceFilter || p.price <= priceFilter;
-    return matchKw && matchCat && matchPrice;
-  });
+  const filtered = products.filter(p =>
+    p.name.toLowerCase().includes(keyword)
+    && (activeFilter === 'all' || p.cat === activeFilter)
+    && (!priceFilter || p.price <= priceFilter)
+  );
 
-  const badgeColors = { HOT:'', SALE:'sale', NEW:'' };
-
+  const badgeClass = { HOT:'', SALE:'sale', NEW:'' };
   const html = filtered.map(p => `
     <div class="product-card">
-      ${p.badge ? `<div class="product-badge ${badgeColors[p.badge] || ''}">${p.badge}</div>` : ''}
+      ${p.badge ? `<div class="product-badge ${badgeClass[p.badge]||''}">${p.badge}</div>` : ''}
       <div class="product-img-wrap">
         <img src="${p.img}" alt="${p.name}" loading="lazy">
         <div class="product-overlay">
@@ -1013,38 +1060,54 @@ function renderProducts() {
     </div>
   `).join('');
 
-  document.getElementById('productList').innerHTML = html || '<div class="cart-empty" style="grid-column:1/-1;padding:40px">Không tìm thấy sản phẩm phù hợp</div>';
+  document.getElementById('productList').innerHTML = html
+    || '<div class="cart-empty" style="grid-column:1/-1;padding:40px">Không tìm thấy sản phẩm phù hợp</div>';
 }
 
-function getCatLabel(cat) {
-  return { kitchen:'🍳 Nhà bếp', electric:'⚡ Điện gia dụng', clean:'🌿 Làm sạch', baby:'👶 Mẹ & bé' }[cat] || cat;
-}
-
-function formatVND(n) {
-  return n.toLocaleString('vi-VN') + 'đ';
-}
-
+// ── Cart actions ──
 function addToCart(id) {
-  const p = products.find(x => x.id === id);
-  cart.push(p);
+  const existing = cart.find(i => i.id === id);
+  if (existing) {
+    existing.qty++;
+  } else {
+    const p = products.find(x => x.id === id);
+    cart.push({ ...p, qty: 1 });
+  }
+  saveCart();
   renderCart();
+  const p = products.find(x => x.id === id);
   showToast(`✓ Đã thêm "${p.name}" vào giỏ`);
+}
+
+function changeQty(idx, delta) {
+  cart[idx].qty += delta;
+  if (cart[idx].qty <= 0) cart.splice(idx, 1);
+  saveCart();
+  renderCart();
 }
 
 function removeItem(idx) {
   cart.splice(idx, 1);
+  saveCart();
   renderCart();
 }
 
+function clearCart() {
+  cart = [];
+  saveCart();
+  renderCart();
+}
+
+// ── Render cart ──
 function renderCart() {
-  const count = cart.length;
-  const total = cart.reduce((s, p) => s + p.price, 0);
+  const totalQty = cart.reduce((s, i) => s + i.qty, 0);
+  const total    = cart.reduce((s, i) => s + i.price * i.qty, 0);
 
-  document.getElementById('cartBadge').textContent = count;
-  document.getElementById('cartCountBig').textContent = count;
-  document.getElementById('totalAmount').textContent = formatVND(total);
+  document.getElementById('cartBadge').textContent    = totalQty;
+  document.getElementById('cartCountBig').textContent = totalQty;
+  document.getElementById('totalAmount').textContent  = formatVND(total);
 
-  if (count === 0) {
+  if (!cart.length) {
     document.getElementById('cartList').innerHTML = '<div class="cart-empty">Chưa có sản phẩm nào trong giỏ hàng</div>';
     return;
   }
@@ -1055,6 +1118,12 @@ function renderCart() {
       <div class="cart-item-info">
         <div class="cart-item-name">${item.name}</div>
         <div class="cart-item-price">${formatVND(item.price)}</div>
+        <div class="qty-controls">
+          <button class="qty-btn" onclick="changeQty(${i},-1)">−</button>
+          <span class="qty-num">${item.qty}</span>
+          <button class="qty-btn" onclick="changeQty(${i},1)">+</button>
+        </div>
+        ${item.qty > 1 ? `<div class="cart-item-subtotal">Tổng: ${formatVND(item.price * item.qty)}</div>` : ''}
       </div>
       <button class="remove-btn" onclick="removeItem(${i})">✕</button>
     </div>
@@ -1063,25 +1132,22 @@ function renderCart() {
   document.getElementById('cartList').innerHTML = html;
 }
 
-function clearCart() {
-  cart = [];
-  renderCart();
-}
-
+// ── Order ──
 function placeOrder() {
   const name = document.getElementById('custName').value.trim();
   const phone = document.getElementById('custPhone').value.trim();
-  const addr = document.getElementById('custAddress').value.trim();
+  const addr  = document.getElementById('custAddress').value.trim();
 
-  if (!name) { showToast('⚠ Vui lòng nhập họ và tên'); return; }
-  if (!phone) { showToast('⚠ Vui lòng nhập số điện thoại'); return; }
-  if (!addr) { showToast('⚠ Vui lòng nhập địa chỉ giao hàng'); return; }
-  if (cart.length === 0) { showToast('⚠ Giỏ hàng đang trống'); return; }
+  if (!name)         { showToast('⚠ Vui lòng nhập họ và tên'); return; }
+  if (!phone)        { showToast('⚠ Vui lòng nhập số điện thoại'); return; }
+  if (!addr)         { showToast('⚠ Vui lòng nhập địa chỉ giao hàng'); return; }
+  if (!cart.length)  { showToast('⚠ Giỏ hàng đang trống'); return; }
 
-  const total = cart.reduce((s, p) => s + p.price, 0);
+  const total = cart.reduce((s, i) => s + i.price * i.qty, 0);
   document.getElementById('modalMsg').innerHTML = `
-    Xin chào <b>${name}</b>! Đơn hàng của bạn trị giá <b style="color:var(--gold)">${formatVND(total)}</b> 
-    đã được ghi nhận.<br><br>Chúng tôi sẽ liên hệ qua số <b>${phone}</b> để xác nhận trong vòng 30 phút.
+    Xin chào <b>${name}</b>! Đơn hàng của bạn trị giá
+    <b style="color:var(--gold)">${formatVND(total)}</b> đã được ghi nhận.<br><br>
+    Chúng tôi sẽ liên hệ qua số <b>${phone}</b> để xác nhận trong vòng 30 phút.
   `;
   document.getElementById('modalOverlay').classList.add('show');
   clearCart();
@@ -1096,6 +1162,7 @@ function scrollToCart() {
   document.getElementById('cartSection').scrollIntoView({ behavior: 'smooth' });
 }
 
+// ── Toast ──
 let toastTimer;
 function showToast(msg) {
   const t = document.getElementById('toast');
@@ -1105,7 +1172,9 @@ function showToast(msg) {
   toastTimer = setTimeout(() => t.classList.remove('show'), 2800);
 }
 
+// ── Init ──
 renderProducts();
+renderCart();
 </script>
 </body>
 </html>
